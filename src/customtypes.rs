@@ -45,6 +45,6 @@ impl Rectangle {
     pub fn square(&self, new_side_length: f32) -> Rectangle {
         let Rectangle { top_left, .. } = self;
         let new_bottom_right = Point { x: top_left.x + new_side_length, y: top_left.y - new_side_length };
-        Rectangle { Point::new(top_left.x, top_left.y), Point::new(top_left.x + new_side_length, top_left.y - new_side_length) }
+        Rectangle { top_left: Point::new(top_left.x, top_left.y), bottom_right: new_bottom_right }
     }
 }
