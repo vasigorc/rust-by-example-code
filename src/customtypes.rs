@@ -48,3 +48,28 @@ impl Rectangle {
         Rectangle { top_left: Point::new(top_left.x, top_left.y), bottom_right: new_bottom_right }
     }
 }
+
+mod tests {
+    use rstest::{rstest, fixture};
+    use crate::{Rectangle, Point};
+
+    #[fixture]
+    fn fixture() -> Rectangle {
+        Rectangle::new(Point::new(1.0, 5.0), Point::new(7.0, 10.0))
+    }
+
+    #[rstest]
+    fn rect_area_calculated_for_rectangle_of_30(fixture: Rectangle) {
+        assert_eq!(fixture.rect_area(), 30f32)
+    }
+
+    #[rstest]
+    fn square_of_5(fixture: Rectangle) {
+        let side_length = 5f32;
+        let Rectangle { top_left, bottom_right } = fixture.square(side_length);
+        let height = top_left.y - bottom_right.y;
+        let width = bottom_right.x - top_left.x;
+        assert_eq!(height, side_length);
+        assert_eq!(width, side_length)
+    }
+}
