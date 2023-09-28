@@ -47,6 +47,16 @@ impl Rectangle {
         let new_bottom_right = Point { x: top_left.x + new_side_length, y: top_left.y - new_side_length };
         Rectangle { top_left: Point::new(top_left.x, top_left.y), bottom_right: new_bottom_right }
     }
+
+    pub fn height(&self) -> f32 {
+        let Rectangle { top_left, bottom_right } = self;
+        bottom_right.x - top_left.x
+    }
+
+    pub fn width(&self) -> f32 {
+        let Rectangle { top_left, bottom_right } = self;
+        top_left.y - bottom_right.y
+    }
 }
 
 mod tests {
@@ -66,10 +76,8 @@ mod tests {
     #[rstest]
     fn square_of_5(fixture: Rectangle) {
         let side_length = 5f32;
-        let Rectangle { top_left, bottom_right } = fixture.square(side_length);
-        let height = top_left.y - bottom_right.y;
-        let width = bottom_right.x - top_left.x;
-        assert_eq!(height, side_length);
-        assert_eq!(width, side_length)
+        let squared_fixture = fixture.square(side_length);
+        assert_eq!(squared_fixture.height(), side_length);
+        assert_eq!(squared_fixture.width(), side_length)
     }
 }
