@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 rstest = "0.18.2"
+
+[dev-dependencies]
+clippy = "0.0.302"
