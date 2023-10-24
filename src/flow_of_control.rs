@@ -24,4 +24,13 @@ pub fn main() {
     };
 
     println!("{} -> {}", boolean, binary);
+
+    // if-let example
+    enum Foo {Bar}
+
+    let a = Foo::Bar;
+
+    if let Foo::Bar = a {
+        println!("a is a foobar")
+    }
 }
