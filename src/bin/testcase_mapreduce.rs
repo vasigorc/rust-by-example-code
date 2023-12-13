@@ -19,7 +19,7 @@ fn main() {
     // "Map" phase
     // split our data into segments for individual calculation
     // each chunk will be a reference (&str) into the actual data
-    let chunked_data = split_into_equal_parts(data.replace('\n', ""), parallelism_level);
+    let chunked_data = split_into_equal_parts(data.replace('\n', "").as_str(), parallelism_level);
     // .enumerate() adds the current loop index to whatever is iterated
     // the resulting tuple "(index, element)" is then immediately
     // "destructured" into two variables, "i" and "data_segment" with a
@@ -49,7 +49,7 @@ fn main() {
     println!("Final sum result: {}", final_result);
 }
 
-fn split_into_equal_parts(input: String, number_partitions: usize) -> Vec<String> {
+fn split_into_equal_parts(input: &str, number_partitions: usize) -> Vec<String> {
     let length = input.len();
     let partition_size = length / number_partitions;
     let remaining_characters = length % number_partitions;
